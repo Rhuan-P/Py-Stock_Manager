@@ -18,7 +18,7 @@ def criar_produto():
 @bp.route('/produtos', methods=['GET'])
 def listar_todos_produtos():
     produtos = listar_produtos()
-    return jsonify([{"codigo": p.codigo, "nome": p.nome} for p in produtos])
+    return jsonify([{"nome": p.nome, "codigo": p.codigo} for p in produtos])
 
 @bp.route('/produto/<codigo>', methods=['GET'])
 def obter_produto(codigo):

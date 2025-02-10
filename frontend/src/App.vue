@@ -1,26 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <TesteSC />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// Importando o componente TesteSC
+import TesteSC from './components/TesteSC.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    TesteSC,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* Estilos globais podem ser adicionados aqui */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 </style>
