@@ -42,3 +42,10 @@ def atualizar_preco_lote(lote_id: int, novo_preco: float):
 
 def listar_produtos():
     return Produto.query.all()
+
+def clear_db():
+    db.drop_all()
+    db.create_all()
+    return{"message": "Banco de dados limpo com sucesso"}
+
+

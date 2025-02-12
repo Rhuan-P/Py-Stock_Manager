@@ -1,10 +1,20 @@
 from flask import Blueprint, request, jsonify
+from flask_cors import CORS
 from .controllers import (
     adicionar_produto, buscar_produto, adicionar_lote, remover_lote, 
-    atualizar_preco_lote, listar_produtos
+    atualizar_preco_lote, listar_produtos, clear_db
 )
 
 bp = Blueprint('product', __name__, url_prefix='/api')
+
+CORS(bp)
+@bp.after_request
+def add_cors_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Accept')
+    return response
+
 
 @bp.route('/produtos', methods=['POST'])
 def criar_produto():
@@ -53,3 +63,9 @@ def atualizar_preco_lote_route(lote_id):
     if atualizar_preco_lote(lote_id, data['preco']):
         return jsonify({"message": "Preço atualizado"}), 200
     return jsonify({"message": "Lote não encontrado"}), 404
+
+@bp.route('/clear', methods=['DELETE'])
+def clear():
+    # Limpa o banco de dados
+    clear_db()  
+    return jsonify({'message': 'Banco de dados limpo com sucesso!'})
